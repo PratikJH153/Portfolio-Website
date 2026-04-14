@@ -388,7 +388,7 @@ Taskee is a simple yet powerful task manager that helps you stay focused, get th
     logo: "https://storage.googleapis.com/personal-website-pratikjh/orbitai/logo",
     media: [
       { src: "https://storage.googleapis.com/personal-website-pratikjh/orbitai/2025_Spring_IDX-562-01%20Multidisciplinary%20Innovation-023.JPG", alt: "Orbit AI 1" },
-      { src: "https://storage.googleapis.com/personal-website-pratikjh/orbitai/2025_Spring_IDX-562-01%20Multidisciplinary%20Innovation-039.JPG", alt: "Orbit AI 2" },
+      { src: "https://storage.googleapis.com/personal-website-pratikjh/orbitai/2025_Spring_IDX-562-01%20Multidisciplinary%20Innovation-054.JPG", alt: "Orbit AI 2" },
       { src: "https://storage.googleapis.com/personal-website-pratikjh/orbitai/2025_Spring_IDX-562-01%20Multidisciplinary%20Innovation-041.JPG", alt: "Orbit AI 3" },
       { src: "https://storage.googleapis.com/personal-website-pratikjh/orbitai/Screenshot%202025-05-05%20at%209.21.30%E2%80%AFAM.png", alt: "Orbit AI 4" },
     ],

@@ -167,32 +167,34 @@
   }
 
   .links {
-    position: fixed;
-    top: 64px;
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
-    bottom: 0;
     flex-direction: column;
-    background: var(--glass-bg-modal);
-    -webkit-backdrop-filter: blur(44px) saturate(var(--glass-saturate));
-    backdrop-filter: blur(44px) saturate(var(--glass-saturate));
-    padding: 24px;
-    gap: 4px;
-    transform: translateY(-10px);
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0 var(--side-padding);
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
     opacity: 0;
     pointer-events: none;
-    transition: transform var(--transition), opacity var(--transition);
+    transition: max-height 300ms var(--ease), opacity 200ms var(--ease), padding 300ms var(--ease);
   }
 
   .linksOpen {
-    transform: translateY(0);
+    max-height: 400px;
     opacity: 1;
     pointer-events: all;
+    padding: 12px var(--side-padding);
   }
 
   .link {
     width: 100%;
     padding: 14px 16px;
     font-size: var(--text-md);
+    border-radius: 12px;
   }
 }
