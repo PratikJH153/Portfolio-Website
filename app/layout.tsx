@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Great_Vibes, Inter, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import PixelCursor from "../components/PixelCursor";
@@ -50,6 +51,7 @@ export default function RootLayout({
           <Navbar />
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
