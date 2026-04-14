@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import PixelCursor from "../components/PixelCursor";
 import { ThemeProvider } from "../components/ThemeProvider";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -50,6 +51,7 @@ export default function RootLayout({
           <Navbar />
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
