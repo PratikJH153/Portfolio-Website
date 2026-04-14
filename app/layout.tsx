@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Great_Vibes, Inter, JetBrains_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import PixelCursor from "../components/PixelCursor";
@@ -27,9 +26,9 @@ const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: "Pratik Jadhav — AI Engineer",
+  title: "Pratik Jadhav — Software Engineer",
   description:
-    "Building intelligent systems that understand humans. AI Engineer, ML Systems, Full-Stack Development.",
+    "Building intelligent systems that understand humans. Software Engineer, AI Engineer, ML Systems, Full-Stack Development.",
   icons: {
     icon: "/icon-p.svg",
   },
