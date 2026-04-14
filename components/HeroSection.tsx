@@ -24,7 +24,7 @@ export default function HeroSection() {
               Hi, I&apos;m{" "}
               <span className={styles.name}>{hero.name}!</span>
               <br />
-              <span className={styles.faded}>I&apos;m an </span>
+              <span className={styles.faded}>I&apos;m a </span>
               <span className={styles.bold}>{hero.role}</span>
               <span className={styles.faded}> focused on</span>
               <br />
