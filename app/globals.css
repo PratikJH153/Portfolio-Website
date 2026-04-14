@@ -1,0 +1,292 @@
+/* ============================================
+   PORTFOLIO DESIGN SYSTEM v2
+   Clean · Warm · Personal · Bento Grid
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&display=swap');
+
+html {
+  color-scheme: light;
+}
+
+:root {
+  /* ── Colors ── */
+  --bg: #F5F2ED;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FAFAFA;
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --text-tertiary: #9A9A9A;
+  --accent: #E8613C;
+  --accent-light: #FFF0EB;
+  --border: #E8E4DE;
+  --border-hover: #D0CBC4;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md: 0 12px 32px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-lg: 0 24px 64px rgba(0,0,0,0.1), 0 12px 24px rgba(0,0,0,0.05);
+  --green-dot: #34C759;
+
+  /* ── Glass (strong frost — very high backdrop blur) ── */
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-bg-strong: rgba(255, 255, 255, 0.62);
+  --glass-bg-modal: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-border-outer: rgba(255, 255, 255, 0.35);
+  --glass-border-hover: rgba(255, 255, 255, 0.92);
+  /* Primary blur for cards / panels — keep this large for a heavy frosted look */
+  --glass-blur: 72px;
+  /* Hero pill, modal — stronger blur */
+  --glass-blur-heavy: 96px;
+  /* Chips / small surfaces — still high vs typical UIs */
+  --glass-blur-soft: 48px;
+  --glass-saturate: 1.5;
+  --glass-shadow: 0 16px 48px rgba(0, 0, 0, 0.08), 0 6px 16px rgba(0, 0, 0, 0.05);
+  --glass-inset:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.14);
+  --glass-modal-shadow: 0 32px 80px rgba(0, 0, 0, 0.16), 0 12px 32px rgba(0, 0, 0, 0.1);
+  --glass-box:
+    0 0 0 1px var(--glass-border-outer),
+    var(--glass-shadow),
+    var(--glass-inset);
+  --glass-box-hover:
+    0 0 0 1px var(--glass-border-outer),
+    var(--shadow-md),
+    var(--glass-inset);
+
+  /* ── Layout ── */
+  --max-width: 1420px;
+  --side-padding: clamp(20px, 5vw, 80px);
+  --section-gap: clamp(64px, 8vw, 120px);
+  --card-radius: 24px;
+  --card-radius-sm: 16px;
+
+  /* ── Typography ── */
+  --font-sans: 'DM Sans', var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), 'SF Mono', 'Courier New', monospace;
+
+  --text-hero: clamp(36px, 5vw, 56px);
+  --text-lg: clamp(20px, 2.5vw, 28px);
+  --text-md: 16px;
+  --text-sm: 14px;
+  --text-xs: 12px;
+
+  /* ── Transitions ── */
+  --ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --transition: 200ms var(--ease);
+
+  /* ── Theme UI ── */
+  --nav-link-hover-bg: rgba(0, 0, 0, 0.06);
+  --cta-hover-bg: #2a2a2a;
+  --nav-scrolled-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+
+  /* Frosted pills / chips (skill tags, period badges, etc.) */
+  --card-section-label: var(--text-tertiary);
+  --pill-text: var(--text-secondary);
+  --pill-group-label: var(--text-secondary);
+  --pill-surface: rgba(255, 255, 255, 0.32);
+  --pill-surface-strong: rgba(255, 255, 255, 0.38);
+  --pill-surface-hover: rgba(255, 255, 255, 0.48);
+  --pill-border: var(--glass-border);
+  --pill-inset: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* ── Dark theme (class on <html> via next-themes) ── */
+html.dark {
+  color-scheme: dark;
+
+  --bg: #0f0e0c;
+  --bg-card: #1a1916;
+  --bg-card-hover: #22211e;
+  --text-primary: #f2efe8;
+  --text-secondary: #c9c5bd;
+  --text-tertiary: #9e9a91;
+  --accent: #f07850;
+  --accent-light: rgba(240, 120, 80, 0.12);
+  --border: #2e2c28;
+  --border-hover: #3f3c37;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.28);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.5), 0 12px 24px rgba(0, 0, 0, 0.32);
+  --green-dot: #34c759;
+
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg-strong: rgba(22, 21, 18, 0.78);
+  --glass-bg-modal: rgba(18, 17, 15, 0.94);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-outer: rgba(255, 255, 255, 0.06);
+  --glass-border-hover: rgba(255, 255, 255, 0.16);
+  --glass-blur: 72px;
+  --glass-blur-heavy: 96px;
+  --glass-blur-soft: 48px;
+  --glass-saturate: 1.45;
+  --glass-shadow: 0 16px 48px rgba(0, 0, 0, 0.35), 0 6px 16px rgba(0, 0, 0, 0.22);
+  --glass-inset:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+  --glass-modal-shadow: 0 32px 80px rgba(0, 0, 0, 0.55), 0 12px 32px rgba(0, 0, 0, 0.35);
+  --glass-box:
+    0 0 0 1px var(--glass-border-outer),
+    var(--glass-shadow),
+    var(--glass-inset);
+  --glass-box-hover:
+    0 0 0 1px var(--glass-border-outer),
+    var(--shadow-md),
+    var(--glass-inset);
+
+  --nav-link-hover-bg: rgba(255, 255, 255, 0.08);
+  --cta-hover-bg: #d8d3c8;
+  --nav-scrolled-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  --card-section-label: rgba(255, 255, 255, 0.78);
+  --pill-text: #ffffff;
+  --pill-group-label: rgba(255, 255, 255, 0.92);
+  --pill-surface: rgba(255, 255, 255, 0.1);
+  --pill-surface-strong: rgba(255, 255, 255, 0.14);
+  --pill-surface-hover: rgba(255, 255, 255, 0.18);
+  --pill-border: rgba(255, 255, 255, 0.16);
+  --pill-inset: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* main above page background; click burst canvas is z-index 99 */
+main {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 100% 70% at 100% -15%, rgba(232, 97, 60, 0.1), transparent 52%),
+    radial-gradient(ellipse 70% 55% at -5% 40%, rgba(124, 158, 178, 0.08), transparent 48%),
+    linear-gradient(165deg, var(--bg) 0%, #ebe6df 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.25s var(--ease), color 0.2s var(--ease);
+}
+
+html.dark body {
+  background-image:
+    radial-gradient(ellipse 100% 70% at 100% -15%, rgba(240, 120, 80, 0.14), transparent 52%),
+    radial-gradient(ellipse 70% 55% at -5% 40%, rgba(124, 158, 178, 0.1), transparent 48%),
+    linear-gradient(165deg, var(--bg) 0%, #080706 100%);
+}
+
+::selection {
+  background-color: var(--accent);
+  color: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* ── Container ── */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--side-padding);
+}
+
+/* ── Card base ── */
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--card-radius);
+  padding: 32px;
+  box-shadow: var(--glass-box);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.card:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-box-hover);
+  transform: translateY(-2px);
+}
+
+/* ── Accent tag ── */
+.accent-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--accent);
+  background: rgba(255, 240, 235, 0.55);
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(1.25);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(1.25);
+  border: 1px solid rgba(232, 97, 60, 0.22);
+  padding: 6px 14px;
+  border-radius: 100px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+html.dark .accent-tag {
+  background: rgba(240, 120, 80, 0.12);
+  border-color: rgba(240, 120, 80, 0.32);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+/* ── Section spacing ── */
+.section-spacing {
+  margin-bottom: var(--section-gap);
+}

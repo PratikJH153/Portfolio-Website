@@ -1,0 +1,591 @@
+.experience {
+  padding: clamp(64px, 10vw, 120px) 0;
+  border-top: 1px solid var(--border);
+  background-color: var(--bg);
+  /* Light grid (wireframe-style) — shows through glass cards */
+  background-image:
+    linear-gradient(to right, rgba(26, 26, 26, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 26, 26, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: center top;
+}
+
+html.dark .experience {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+}
+
+.header {
+  max-width: 600px;
+  margin-bottom: clamp(48px, 8vw, 72px);
+}
+
+.title {
+  font-size: var(--text-hero);
+  color: var(--text-primary);
+  margin: 16px 0;
+  letter-spacing: -0.04em;
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.timeline {
+  position: relative;
+}
+
+/* Dashed segments only between measured dot centers (SVG layer behind cards) */
+.timelineConnectors {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.timelineConnectorLine {
+  stroke: color-mix(in srgb, var(--text-tertiary) 62%, var(--border));
+  stroke-width: 2;
+  stroke-dasharray: 5 9;
+  stroke-linecap: round;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+html.dark .timelineConnectorLine {
+  stroke: color-mix(in srgb, var(--text-tertiary) 48%, var(--border));
+}
+
+.block {
+  --exp-block-gap: clamp(40px, 6vw, 56px);
+  position: relative;
+  z-index: 1;
+  padding-bottom: var(--exp-block-gap);
+}
+
+.block:last-child {
+  padding-bottom: 0;
+}
+
+.itemRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: clamp(20px, 3vw, 36px);
+}
+
+/*
+ * Staggered rows: rail + card move as a unit to the right so the dot stays
+ * next to the card instead of a single vertical column on the far left.
+ */
+.itemRowCluster {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(20px, 3vw, 36px);
+  margin-left: auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Dot + period — sits on the grid to the left of the glass card */
+.rail {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: clamp(76px, 11vw, 100px);
+  min-width: clamp(76px, 11vw, 100px);
+  box-sizing: border-box;
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--accent) 85%, var(--text-primary));
+  background: var(--bg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+html.dark .node {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.timelineDate {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 8px 10px;
+  max-width: 100%;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  /* Opaque plate so dashed connectors never show through the date */
+  background: var(--bg);
+  border-radius: 10px;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--border) 75%, transparent),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+html.dark .timelineDate {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--border) 55%, transparent),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.cardCol {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  width: 100%;
+}
+
+.cardColOdd {
+  justify-content: flex-start;
+}
+
+.cardColCluster {
+  flex: 0 1 auto;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.cardCol .content {
+  width: 100%;
+}
+
+/* Glass card — matches BentoGrid `.card` */
+.content {
+  position: relative;
+  min-width: 0;
+  padding: clamp(28px, 3vw, 36px) clamp(24px, 3vw, 36px);
+  background: var(--glass-bg-modal);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--glass-box);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.content:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-box-hover);
+  transform: translateY(-2px);
+}
+
+.expHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(12px, 2.5vw, 20px);
+}
+
+.expHeaderMain {
+  min-width: 0;
+  flex: 1;
+}
+
+.expHeaderIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.role {
+  margin: 0;
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.expCompanyRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 16px;
+  min-width: 0;
+}
+
+.expLogoWrap {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: color-mix(in srgb, var(--bg) 90%, var(--text-tertiary));
+  box-shadow: var(--pill-inset);
+}
+
+.expLogo {
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+}
+
+.expCompanyStack {
+  min-width: 0;
+  flex: 1;
+  padding-top: 2px;
+}
+
+.companyName {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.05rem + 0.55vw, 1.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.companyTagline {
+  max-width: 52ch;
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.expMetaTags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+  max-width: min(340px, 48%);
+}
+
+.typeTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--pill-group-label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 7px 12px;
+  border: 1px solid var(--pill-border);
+  border-radius: 100px;
+  line-height: 1.35;
+  max-width: min(280px, 100%);
+  text-align: left;
+  flex-shrink: 0;
+  background: var(--pill-surface);
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(1.2);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(1.2);
+  box-shadow: var(--pill-inset);
+}
+
+.typeTagIcon {
+  flex-shrink: 0;
+  font-size: 11px;
+  line-height: 1;
+  opacity: 0.88;
+  text-transform: none;
+}
+
+.detailsSection {
+  margin-top: 0;
+  padding-top: clamp(22px, 3.5vw, 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+.details {
+  margin: 0;
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.details li {
+  padding-left: 4px;
+}
+
+.details li::marker {
+  color: var(--accent);
+}
+
+.detailsToggleRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.detailsToggle {
+  margin: 0;
+  margin-left: 1.15em;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.detailsToggle:hover {
+  color: var(--text-primary);
+}
+
+.expLinkRow {
+  width: 100%;
+  margin-top: 0;
+  padding-top: clamp(18px, 2.5vw, 24px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  /* border-top: 1px solid color-mix(in srgb, var(--border) 65%, transparent); */
+}
+
+.websiteLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 10px 18px;
+  border-radius: 100px;
+  border: 1px solid var(--pill-border);
+  background: var(--pill-surface-strong);
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(1.15);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(1.15);
+  box-shadow: var(--pill-inset);
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    color var(--transition),
+    box-shadow var(--transition);
+}
+
+.websiteLink:hover {
+  border-color: var(--glass-border-hover);
+  color: var(--accent);
+  background: var(--accent-light);
+  box-shadow: var(--glass-box);
+}
+
+.websiteArrow {
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+/* ── Compact media preview (opens lightbox) ── */
+.mediaPreview {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+}
+
+.mediaPreviewLabel {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.mediaThumbRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mediaMiniThumb {
+  position: relative;
+  width: 56px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 0 1px var(--glass-border-outer),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: box-shadow var(--transition), transform var(--transition);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(1.1);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(1.1);
+}
+
+.mediaMiniThumb:hover {
+  box-shadow:
+    0 0 0 2px var(--accent),
+    0 4px 14px rgba(232, 97, 60, 0.12);
+  transform: scale(1.04);
+}
+
+.mediaMiniImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mediaMiniVideo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #2a2a2a, #121212);
+}
+
+.mediaPlay {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0.95;
+}
+
+.mediaMore {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+
+/* Ligthbox styles moved to MediaLightbox.module.css */
+
+@media (max-width: 768px) {
+  .itemRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .itemRowCluster {
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: 0;
+    width: 100%;
+    gap: 16px;
+  }
+
+  .rail {
+    flex-direction: row;
+    width: 100%;
+    min-width: 0;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .timelineDate {
+    text-align: left;
+    font-size: var(--text-sm);
+  }
+
+  .content {
+    padding: 24px;
+  }
+
+  .cardCol,
+  .cardColEven,
+  .cardColOdd {
+    justify-content: stretch;
+  }
+
+  .cardCol .content {
+    max-width: none;
+  }
+
+  .block {
+    --exp-block-gap: clamp(28px, 6vw, 40px);
+    padding-bottom: var(--exp-block-gap);
+  }
+
+  .expHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .expMetaTags {
+    align-self: stretch;
+    justify-content: flex-start;
+    max-width: 100%;
+  }
+
+  .typeTag {
+    max-width: 100%;
+  }
+
+  .lbArrow {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  .lbArrowPrev {
+    left: 8px;
+  }
+
+  .lbArrowNext {
+    right: 8px;
+  }
+
+  .lbTopBar {
+    padding: 10px 10px 40px;
+  }
+
+  .mediaPreview {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

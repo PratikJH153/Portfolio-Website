@@ -1,0 +1,193 @@
+.section {
+  padding: clamp(64px, 10vw, 120px) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.header {
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+
+.title {
+  font-size: var(--text-hero);
+  color: var(--text-primary);
+  margin: 16px 0;
+  letter-spacing: -0.04em;
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Glass surface — same language as ActivitiesSection */
+.card {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--glass-box);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.cardBody {
+  padding: 28px 28px 26px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+
+.cardLogoWrap {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: color-mix(in srgb, var(--bg) 90%, var(--text-tertiary));
+  box-shadow: var(--pill-inset);
+}
+
+.cardLogo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-box-hover);
+  transform: translateY(-2px);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.cardEmoji {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.cardArrow {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  opacity: 0.5;
+  transition: transform var(--transition);
+}
+
+.card:hover .cardArrow {
+  transform: translate(2px, -2px);
+  color: var(--accent);
+  opacity: 1;
+}
+
+.cardTitle {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.cardDesc {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.cardTag {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--pill-surface);
+  border: 1px solid var(--pill-border);
+  padding: 4px 10px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cardActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.cardActionButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  background: var(--pill-surface);
+  border: 1px solid var(--pill-border);
+  padding: 8px 14px;
+  border-radius: 12px;
+  transition: all var(--transition);
+}
+
+.cardActionButton:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.cardActionIcon {
+  width: 14px;
+  height: 14px;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cardBody {
+    padding: 24px;
+  }
+}

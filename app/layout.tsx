@@ -1,0 +1,56 @@
+import type { Metadata } from "next";
+import { Great_Vibes, Inter, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
+import Navbar from "../components/Navbar";
+import PixelCursor from "../components/PixelCursor";
+import { ThemeProvider } from "../components/ThemeProvider";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const greatVibes = Great_Vibes({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-great-vibes",
+});
+
+export const metadata: Metadata = {
+  title: "Pratik Jadhav — AI Engineer",
+  description:
+    "Building intelligent systems that understand humans. AI Engineer, ML Systems, Full-Stack Development.",
+  icons: {
+    icon: "/icon-p.svg",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${inter.variable} ${jetbrainsMono.variable} ${greatVibes.variable}`}
+      suppressHydrationWarning
+    >
+      <body>
+        <ThemeProvider>
+          <PixelCursor />
+          <Navbar />
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

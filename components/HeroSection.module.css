@@ -1,0 +1,244 @@
+.hero {
+  /*
+   * Shared with .visual bottom offset so the portrait strip reaches the section’s
+   * inner bottom — image feet sit flush on the bento, while the gap under the
+   * text column stays in the padding band.
+   */
+  --hero-bento-gap: clamp(44px, 5vw, 72px);
+  padding: 120px 0 var(--hero-bento-gap);
+  /* Align in-page #about scroll below sticky nav (64px) */
+  scroll-margin-top: 64px;
+  /* Contain absolute portrait + bitmap that can exceed the strip on odd viewports */
+  overflow: hidden;
+}
+
+/*
+ * Portrait is absolutely positioned on wide screens so the hero’s block height
+ * follows the text column only. Otherwise the tall image stretches the row and
+ * leaves a huge gap above the bento on the left.
+ */
+.layout {
+  position: relative;
+  min-width: 0;
+}
+
+.mainColumn {
+  padding-bottom: 36px;
+  min-width: 0;
+}
+
+@media (min-width: 769px) {
+  .mainColumn {
+    width: calc(100% - 36% - clamp(20px, 4vw, 48px));
+    max-width: calc(100% - 200px - clamp(20px, 4vw, 48px));
+  }
+
+  .visual {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    /* Stretch through the hero’s bottom padding so the bitmap meets the next section */
+    bottom: calc(-1 * var(--hero-bento-gap));
+    width: 36%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Toward the main column (left), not centered in the strip */
+    align-items: flex-start;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .portrait {
+    /* dvh accounts for mobile toolbars; 100% caps to the strip when % resolves */
+    max-height: min(85vh, 80dvh, 720px, 100%);
+  }
+}
+
+.visual {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Framer / Next wrapper: keep the bitmap pinned to the foot of the strip */
+.visual > * {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.portrait {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom left;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.textBlock {
+  margin-bottom: 32px;
+}
+
+.headline {
+  font-size: var(--text-hero);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.name {
+  font-weight: 700;
+}
+
+.faded {
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+.bold {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.accent {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
+  padding: 8px 18px;
+  border-radius: 100px;
+  margin-left: 12px;
+  vertical-align: middle;
+  position: relative;
+  top: -6px;
+  box-shadow: var(--glass-box);
+}
+
+.greenDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green-dot);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 32px;
+  background: var(--text-primary);
+  color: var(--bg);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: 100px;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.cta:hover {
+  background: var(--cta-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.cta:active {
+  transform: translateY(0);
+}
+
+.tagline {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  max-width: 340px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  /*
+   * In-flow layout: hero padding-bottom would sit *below* the image and recreate
+   * the cream gap above the bento. Drop it here; spacing under the copy stays
+   * on .mainColumn. Desktop still uses --hero-bento-gap + absolute visual.
+   */
+  .hero {
+    padding-bottom: 0;
+  }
+
+  .mainColumn {
+    width: 100%;
+    max-width: none;
+    padding-bottom: 28px;
+  }
+
+  .visual {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    min-width: 0;
+    order: 1;
+    margin-top: 8px;
+    margin-bottom: 0;
+    align-self: flex-start;
+    line-height: 0;
+  }
+
+  .mainColumn {
+    order: 0;
+  }
+
+  .layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .portrait {
+    max-height: min(64vh, 85dvh, 460px);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 40px 0 0;
+  }
+
+  .statusBadge {
+    display: none;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
