@@ -32,10 +32,6 @@ export default function ContactSection() {
   return (
     <section className={styles.section} id="contact">
       <div className="container">
-        <div className={styles.header}>
-          <h2 className={styles.title}>Contact</h2>
-          <p className={styles.subtitle}>Reach out anytime.</p>
-        </div>
 
         <motion.div
           className={styles.card}

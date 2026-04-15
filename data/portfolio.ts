@@ -117,7 +117,8 @@ export const hero = {
   name: "Pratik Jadhav",
   role: "Software Engineer",
   company: "Building Intelligent Systems",
-  tagline: "Feel free to explore my portfolio and reach out — I'd love to connect!",
+  resumeUrl:
+    "https://storage.googleapis.com/personal-website-pratikjh/PratikJadhav.pdf",
   location: "San Francisco, CA",
 };
 

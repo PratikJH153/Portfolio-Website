@@ -165,24 +165,99 @@
   font-size: var(--text-sm);
   font-weight: 600;
   border-radius: 100px;
-  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  border: none;
+  box-shadow: var(--shadow-md);
+  transition: background var(--transition), transform var(--transition),
+    box-shadow var(--transition);
 }
 
 .cta:hover {
   background: var(--cta-hover-bg);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
 }
 
 .cta:active {
   transform: translateY(0);
+  box-shadow: var(--shadow-md);
 }
 
-.tagline {
-  font-size: var(--text-md);
-  color: var(--text-secondary);
-  max-width: 340px;
-  line-height: 1.5;
+.resume {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 32px;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
+  transition: background var(--transition), border-color var(--transition),
+    transform var(--transition), box-shadow var(--transition);
+}
+
+.resume:hover {
+  background: #fafafa;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.resume:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+/*
+ * Dark theme: --text-primary is a light color, so “fill with text-primary”
+ * inverts the primary CTA. Lock the hero buttons to dark fill + light text
+ * and add a visible lift (shadow + hairline) on near-black backgrounds.
+ */
+:global(html.dark) .cta {
+  background: #141312;
+  color: #f2efe8;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.55),
+    0 4px 12px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+:global(html.dark) .cta:hover {
+  background: #1f1e1b;
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.6),
+    0 8px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+:global(html.dark) .cta:active {
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+:global(html.dark) .resume {
+  background: #faf9f7;
+  color: #141312;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 12px 36px rgba(0, 0, 0, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+:global(html.dark) .resume:hover {
+  background: #ffffff;
+  box-shadow:
+    0 20px 52px rgba(0, 0, 0, 0.55),
+    0 8px 20px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+:global(html.dark) .resume:active {
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(0, 0, 0, 0.22);
 }
 
 @media (max-width: 768px) {

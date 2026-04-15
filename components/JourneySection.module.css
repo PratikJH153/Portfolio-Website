@@ -21,7 +21,14 @@
   left: 0;
   width: 100%;
   z-index: 3;
-  text-align: center;
+  text-align: left;
+}
+
+.title {
+  font-size: var(--text-hero);
+  color: var(--text-primary);
+  margin: 16px 0;
+  letter-spacing: -0.04em;
 }
 
 .titleCursive {

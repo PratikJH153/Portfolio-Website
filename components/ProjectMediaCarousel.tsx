@@ -6,7 +6,7 @@ import Image from "next/image";
 import type { ExperienceMediaItem } from "../data/portfolio";
 import styles from "./ProjectMediaCarousel.module.css";
 
-const CAROUSEL_INTERVAL_MS = 5000;
+const CAROUSEL_INTERVAL_MS = 8000;
 
 export function MediaPlaceholder({ label, hint = "Project Blueprint" }: { label?: string; hint?: string }) {
   return (

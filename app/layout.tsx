@@ -18,12 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const greatVibes = Great_Vibes({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-great-vibes",
-});
+
 
 export const metadata: Metadata = {
   title: "Pratik Jadhav — Software Engineer",
@@ -42,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${greatVibes.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body>

@@ -41,7 +41,14 @@ export default function HeroSection() {
             <a href="#contact" className={styles.cta}>
               Get in touch
             </a>
-            <p className={styles.tagline}>{hero.tagline}</p>
+            <a
+              href={hero.resumeUrl}
+              className={styles.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Get Resume
+            </a>
           </motion.div>
         </div>
 

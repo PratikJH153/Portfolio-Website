@@ -261,7 +261,10 @@ export default function JourneySection() {
         <div className={styles.header}>
           <div className="container">
             <span className="accent-tag">Memories</span>
-            <h2 className={styles.titleCursive}>My Journey</h2>
+            <h2 className={styles.title}>My Journey</h2>
+            <p className=''>
+              Each frame is a chapter, the full picture is still developing.
+            </p>
           </div>
         </div>
 
@@ -318,9 +321,7 @@ export default function JourneySection() {
           ))}
         </motion.div>
 
-        <p className={styles.footerNote}>
-          Each frame is a chapter — the full picture is still developing.
-        </p>
+
 
         <MediaLightbox
           items={lightboxItems}
